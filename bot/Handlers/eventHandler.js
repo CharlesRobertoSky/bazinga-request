@@ -2,7 +2,6 @@ function loadEvents(client) {
   const ascii = require('ascii-table');
   const table = new ascii().setHeading('Events', 'Status');
   const fs = require('node:fs');
-  const path = require('node:path');
 
   const folders = fs.readdirSync('./bot/Events');
 
@@ -31,25 +30,6 @@ function loadEvents(client) {
       continue;
     }
   }
-  // const eventsPath = path.join(__dirname, '../../bot/Events/');
-  // console.log(eventsPath)
-  // const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
-  // console.log(eventFiles)
-
-  // for (const file of eventFiles) {
-  //   console.log(eventFiles)
-	//   const filePath = path.join(eventsPath, file);
-	//   const event = require(filePath);
-	//   if (event.once) {
-	//   	client.once(event.name, (...args) => event.execute(...args));
-
-	//   } else {
-	//   	client.on(event.name, (...args) => event.execute(...args));
-    
-	//   }
-  //   table.addRow(eventFiles, 'loaded');
-    
-  // }
   return console.log(table.toString(), '\n Loaded events');
 }
 module.exports = { loadEvents };

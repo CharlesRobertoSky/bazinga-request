@@ -27,7 +27,7 @@ async function loadSlashCommands(path) {
 
 loadSlashCommands('./bot/Commands/');
 
-const rest = new REST({ version: '10' }).setToken("MTM0NjI4MDkxMTA4MzI3NDI5MA.GQKbut.lTPrn-BZ7h_jDemvwUA-cD20l-zkRkrFAAikmk");
+const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
 async function RegistrySlash(ID) {
   try {
