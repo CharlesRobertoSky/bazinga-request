@@ -8,14 +8,13 @@ const CollectionSlashs = new Collection();
 async function loadSlashCommands(path) {
 
   for (const file of fs.readdirSync(path)) {
-    console.log(fs.lstatSync(`${path}/${file}`).isDirectory())
+    
     if (fs.lstatSync(`${path}/${file}`).isDirectory()) {
       loadSlashCommands(`${path}/${file}`);
     } else {
-      console.log(file.endsWith('.js'), 'WHERE')
+      
       if (file.endsWith('.js')) {
         const cmd = await import(`../../../${path}/${file}`);
-        console.log(cmd)
         if (cmd.data && cmd.execute) {
           ArraySlashs.push(cmd.data);
           CollectionSlashs.set(cmd.data.name, cmd.execute);
@@ -42,8 +41,10 @@ async function RegistrySlash(ID) {
   }
 }
 module.exports = {
-  name: 'interactionCreate',
+  name: 'builderSlashCommand',
+
   async execute(interaction, client) {
+    console.log(client.guilds.cache.size)
     RegistrySlash(client.guilds.cache.size);
   }
 };

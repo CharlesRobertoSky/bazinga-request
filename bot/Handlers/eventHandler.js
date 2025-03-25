@@ -13,18 +13,12 @@ function loadEvents(client) {
 
     for (const file of files) {
       const event = require(`../Events/${folder}/${file}`);
-      if (event.rest) {
-        if (event.once)
-          client.rest.once(event.name, (...args) =>
-            event.execute(...args, client)
-          );
-        else
-          console.log(client.rest)
-          client.rest.on(event.name, (...args) =>
-            event.execute(...args, client)
-          );
+      
+      console.log(event)
+      if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
       } else {
-        
+        client.on(event.name, (...args) => event.execute(...args));
       }
       table.addRow(file, 'loaded');
       continue;
