@@ -3,7 +3,8 @@ const {
   Client,
   GatewayIntentBits,
   Partials,
-  Collection
+  Collection,
+  
 } = require('discord.js');
 
 const { loadCommands } = require('./bot/Handlers/commandHandler');

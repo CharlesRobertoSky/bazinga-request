@@ -1,21 +1,46 @@
-const {SlashCommandBuilder} = require('discord.js')
+const fs = require('fs');
+const {SlashCommandBuilder, } = require('discord.js')
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('kicker')
-		.setDescription('Ativa o reino das sombras'),
-	async execute(interaction) {
+		.setDescription('Envia alguem para o reino das sombras')
+		.addStringOption(option => 
+			option.setName('input')
+			.setDescription("Adicione o cargo")),
 
-		if (interaction.user.id !== '1211855926731079733') {
-			await interaction.reply('hello world')
+	async execute(interaction) {
+		if (interaction.user.id !== '343464455109083141') {
+			return await interaction.reply('hello world')
 		};
+		console.log('option',option)
+		let role = ''
+		let text = `{"role":"${role}"}`;
+		console.log('text role',text)
+		if (!text.role){
+			const data = fs.readFileSync('./bot/json/options.json', 'utf8');
+			text = JSON.parse(data);
+		}
+		fs.writeFileSync('./bot/json/options.json', JSON.stringify(text, null, 2));
+
+		
+
+
+
+		
 		await interaction.reply('Tu de novo meu amigo')
 		
 		state = 0
-		console.log(interaction)
+		try{
+			setInterval(() => {
+				const member = interaction.options.getMember('343464455109083141');
+				if (member.roles.cache.some(role => role.name === text.role )) {
+					console.log('usuario logado')
+				}
+	
+			}, 10000);
+		}catch(e){
+			console.log(e)
+		}
 		
-		setInterval(() => {
-			console.log('kicker')
-
-		}, 60000);
 	},
 };

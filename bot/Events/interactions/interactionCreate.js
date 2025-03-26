@@ -1,7 +1,7 @@
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction, client) {
-    console.log("Interação de usuario", interaction, "Acesso do client server",client)
+    
 
     if (!interaction.isChatInputCommand()) return;
 
