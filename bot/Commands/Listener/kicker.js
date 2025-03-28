@@ -5,31 +5,32 @@ module.exports = {
 		.setName('kicker')
 		.setDescription('Envia alguem para o reino das sombras')
 		.addStringOption(option => 
-			option.setName('input')
+			option.setName('cargo')
 			.setDescription("Adicione o cargo")),
 
 	async execute(interaction) {
 		if (interaction.user.id !== '343464455109083141') {
+			
 			return await interaction.reply('hello world')
 		};
-		console.log('option',option)
-		let role = ''
-		let text = `{"role":"${role}"}`;
-		console.log('text role',text)
-		if (!text.role){
-			const data = fs.readFileSync('./bot/json/options.json', 'utf8');
-			text = JSON.parse(data);
-		}
-		fs.writeFileSync('./bot/json/options.json', JSON.stringify(text, null, 2));
-
 		
-
-
-
+		const role = interaction.options.getString('cargo') || 'DROGA É O PROGRAMAS'
+		
+		if (!text.role){
+			const jsonData = new JsonHandler('./bot/json/options.json', role)
+			let role = jsonData.read()
+			if (role["role"] == ''){
+				await interaction.reply('Nenhum cargo adicionado, por favor tente novamente com o cargo desejado.')
+			}
+		}
 		
 		await interaction.reply('Tu de novo meu amigo')
 		
-		state = 0
+		if (interaction.member.roles.cache.some(role => role.name === role )){
+			console.log('ON')
+		}
+
+
 		try{
 			setInterval(() => {
 				const member = interaction.options.getMember('343464455109083141');
@@ -44,3 +45,25 @@ module.exports = {
 		
 	},
 };
+
+
+
+class JsonHandler {
+	constructor(local='./', data=""){
+		this.local = local;
+		this.data = data;
+	}
+	
+	read(){
+		const data = fs.readFileSync(this.local, 'utf8');
+		return JSON.parse(data);
+	}
+
+	save(data){
+		const jsonData = {
+			"role": `${this.data}`
+		}
+		return fs.writeFileSync(this.local, JSON.stringify(jsonData, null, 2));
+	}
+	
+}
