@@ -1,3 +1,5 @@
+const {JsonHandler} = require('../../Component/JsonHandler')
+const { getVoiceConnections, joinVoiceChannel, } = require('@discordjs/voice');
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction, client) {
@@ -11,6 +13,12 @@ module.exports = {
 		  console.error(`No command matching ${interaction.commandName} was found.`);
 		  return;
 	  }
+		if(interaction.commandName === 'join'){
+		}
+
+		if(interaction.commandName === 'kicker'){
+
+		}
 
 	  try {
 		  await command.execute(interaction);

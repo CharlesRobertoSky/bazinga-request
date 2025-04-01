@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@discordjs/voice": "^0.18.0",
     "@web-scrobbler/metadata-filter": "^3.1.0",
     "ascii-table": "^0.0.9",
     "colors": "^1.4.0",
