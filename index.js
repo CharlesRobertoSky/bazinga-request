@@ -5,13 +5,20 @@ const {
   Partials,
   Collection,
   
+  
 } = require('discord.js');
 
 const { loadCommands } = require('./bot/Handlers/commandHandler');
 const { loadEvents } = require('./bot/Handlers/eventHandler');
 
 const client = new Client({
-  intents: [Object.keys(GatewayIntentBits)],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
+  
   partials: [Object.keys(Partials)]
 });
 

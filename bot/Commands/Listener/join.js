@@ -1,7 +1,7 @@
 const fs = require('fs');
 const JsonHandler = require('../../Component/JsonHandler')
-const { getVoiceConnections, joinVoiceChannel, } = require('@discordjs/voice');
-const {SlashCommandBuilder, ChannelType, MessageFlags} = require('discord.js');
+const { getVoiceConnections, joinVoiceChannel, VoiceConnectionStatus, entersState} = require('@discordjs/voice');
+const {SlashCommandBuilder, ChannelType, MessageFlags, GuildVoice} = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('join')
@@ -23,22 +23,8 @@ module.exports = {
 
 		
 		
-		await interaction.reply({ content: 'Vou fazer a boa', flags: MessageFlags.Ephemeral })
-
-		const voiceChannel = interaction.options.getChannel('channel')
-		console.log('channel' + voiceChannel)
-		const voiceConnection = joinVoiceChannel()
-			joinVoiceChannel({
-				channelId: '1294806620416507945',
-				guildId : interaction.guildId,
-				adapterCreator: interaction.guild.voiceAdapterCreator
-			});
-
-			await voiceConnection()
-			
-		
-		
-
+		return await interaction.reply({ content: 'Vou fazer a boa', flags: MessageFlags.Ephemeral })
+	
 		// try{
 		// 	setInterval(() => {
 				

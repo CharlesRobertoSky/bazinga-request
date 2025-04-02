@@ -1,5 +1,7 @@
 const {JsonHandler} = require('../../Component/JsonHandler')
-const { getVoiceConnections, joinVoiceChannel, } = require('@discordjs/voice');
+const {joinVoiceChannel, VoiceConnectionDisconnectReason} = require('@discordjs/voice');
+const {MessageFlags} = require('discord.js')
+
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction, client) {
@@ -13,12 +15,34 @@ module.exports = {
 		  console.error(`No command matching ${interaction.commandName} was found.`);
 		  return;
 	  }
+		
 		if(interaction.commandName === 'join'){
-		}
+			const voiceChannel = interaction.options.getChannel('canal')
 
-		if(interaction.commandName === 'kicker'){
+		const voiceConnection = joinVoiceChannel({
+				channelId: voiceChannel.id,
+				guildId : interaction.guildId,
+				adapterCreator: interaction.guild.voiceAdapterCreator,
+			})
+			if(interaction.commandName === 'disconnect'){
+				voiceConnection.disconnect()
+			}
+			client.channels.fetch(voiceConnection.id)
+  			.then(channel => console.log(channel.name))
+  			.catch(console.error);
+		// 	try{
+		// 	setInterval(() => {
+				
 
+
+		// 	}, 10000);
+		// 	}catch(e){
+		// 		console.log(e)
+		// }
 		}
+		
+
+		
 
 	  try {
 		  await command.execute(interaction);
