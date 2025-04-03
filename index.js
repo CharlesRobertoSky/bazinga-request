@@ -4,8 +4,6 @@ const {
   GatewayIntentBits,
   Partials,
   Collection,
-  
-  
 } = require('discord.js');
 
 const { loadCommands } = require('./bot/Handlers/commandHandler');
@@ -15,7 +13,9 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildVoiceStates,
   ],
   

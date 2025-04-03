@@ -1,5 +1,5 @@
 const {JsonHandler} = require('../../Component/JsonHandler')
-const {joinVoiceChannel, VoiceConnectionDisconnectReason} = require('@discordjs/voice');
+const {joinVoiceChannel, getVoiceConnections, getVoiceConnection} = require('@discordjs/voice');
 const {MessageFlags} = require('discord.js')
 
 module.exports = {
@@ -15,32 +15,33 @@ module.exports = {
 		  console.error(`No command matching ${interaction.commandName} was found.`);
 		  return;
 	  }
-		
+
+
+		console.log(interaction.commandName)
 		if(interaction.commandName === 'join'){
 			const voiceChannel = interaction.options.getChannel('canal')
 
-		const voiceConnection = joinVoiceChannel({
+			const voiceConnection = joinVoiceChannel({
 				channelId: voiceChannel.id,
 				guildId : interaction.guildId,
 				adapterCreator: interaction.guild.voiceAdapterCreator,
 			})
-			if(interaction.commandName === 'disconnect'){
-				voiceConnection.disconnect()
-			}
-			client.channels.fetch(voiceConnection.id)
-  			.then(channel => console.log(channel.name))
-  			.catch(console.error);
-		// 	try{
-		// 	setInterval(() => {
-				
-
-
-		// 	}, 10000);
-		// 	}catch(e){
-		// 		console.log(e)
-		// }
-		}
+			
+			
 		
+			
+			
+			// 	try{
+				// 	setInterval(() => {
+					
+					
+
+					// 	}, 10000);
+					// 	}catch(e){
+						// 		console.log(e)
+						// }
+						
+		}
 
 		
 
@@ -56,3 +57,10 @@ module.exports = {
 	}
   }
 };
+
+
+async function getCurrentChannelMembers(channel){
+  const fetchedChannel = await channel.fetch(true)
+  const members = fetchedChannel.members;
+  console.log('Members: ', members)
+}
