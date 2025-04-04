@@ -2,9 +2,32 @@ const {JsonHandler} = require('../../Component/JsonHandler')
 const {joinVoiceChannel, getVoiceConnections, getVoiceConnection} = require('@discordjs/voice');
 const {MessageFlags} = require('discord.js')
 
+require('dotenv').config();
+const {
+  Client,
+  GatewayIntentBits,
+  Partials,
+  Collection,
+  BaseManager
+} = require('discord.js');
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildVoiceStates,
+    
+  ],
+  
+  partials: [Object.keys(Partials)]
+});
+
 module.exports = {
   name: 'interactionCreate',
-  async execute(interaction, client) {
+  async execute(interaction) {
     
 
     if (!interaction.isChatInputCommand()) return;
@@ -19,6 +42,8 @@ module.exports = {
 
 		console.log(interaction.commandName)
 		if(interaction.commandName === 'join'){
+			const reinoDasSombras = '1294963537256386580'
+			
 			const voiceChannel = interaction.options.getChannel('canal')
 
 			const voiceConnection = joinVoiceChannel({
@@ -27,10 +52,20 @@ module.exports = {
 				adapterCreator: interaction.guild.voiceAdapterCreator,
 			})
 			
+
+			const canalVoz = interaction.guild.channels.cache.get(voiceChannel.id);
+    
+        const membros = canalVoz.members.map(membro => membro.user.roles.id);
+    
+        if (membros.length === 0) {
+          return console.log('Não há membros no canal de voz.');
+        }
+    
+        console.log(`Membros no canal de voz ${canalVoz.name}: \n${membros.join('\n')}`);
 			
-		
-			
-			
+				// if(idUsuairo ter o cargo === 'REINO DAS SOMBRAS'){
+
+				// }
 			// 	try{
 				// 	setInterval(() => {
 					
