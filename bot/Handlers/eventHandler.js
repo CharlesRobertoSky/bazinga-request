@@ -9,7 +9,6 @@ function loadEvents(client) {
     const files = fs
     .readdirSync(`./bot/Events/${folder}`)
     .filter(file => file.endsWith('.js'));
-    console.log(files)
 
     for (const file of files) {
       const event = require(`../Events/${folder}/${file}`);

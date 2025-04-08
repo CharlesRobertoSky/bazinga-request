@@ -44,7 +44,6 @@ module.exports = {
   name: 'builderSlashCommand',
 
   async execute(interaction, client) {
-    console.log(client.guilds.cache.size)
     RegistrySlash(client.guilds.cache.size);
   }
 };
