@@ -8,6 +8,9 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.isChatInputCommand()) return;
 	  const command = interaction.client.commands.get(interaction.commandName);
+		if (interaction.user.id !== '1211855926731079733') {
+			return await interaction.reply('hello world')
+		};
 	  if (!command) {
 		  console.error(`No command matching ${interaction.commandName} was found.`);
 		  return;

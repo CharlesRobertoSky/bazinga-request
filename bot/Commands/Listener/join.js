@@ -13,7 +13,7 @@ module.exports = {
     ),
 			
 	async execute(interaction) {
-		if (interaction.user.id !== '343464455109083141') {
+		if (interaction.user.id !== '1211855926731079733') {
 			return await interaction.reply('hello world')
 		};
 		return await interaction.reply({ content: 'Vou fazer a boa', flags: MessageFlags.Ephemeral })
