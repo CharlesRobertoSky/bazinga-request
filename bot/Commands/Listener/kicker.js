@@ -1,6 +1,5 @@
-const fs = require('fs');
-const {JsonHandler} = require('../../Component/JsonHandler')
-const {SlashCommandBuilder, Channel, Role} = require('discord.js')
+const {JsonHandler} = require('../../components/JsonHandler/index.js')
+const {SlashCommandBuilder, MessageFlags} = require('discord.js')
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('kicker')

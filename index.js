@@ -4,7 +4,6 @@ const {
   GatewayIntentBits,
   Partials,
   Collection,
-  BaseManager
 } = require('discord.js');
 
 const { loadCommands } = require('./bot/Handlers/commandHandler');

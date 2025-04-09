@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 class JsonHandler {
 	constructor(local='./'){
 		this.local = local;
@@ -14,7 +16,6 @@ class JsonHandler {
 		}
 		return fs.writeFileSync(this.local, JSON.stringify(jsonData, null, 2));
 	}
-	
 }
-module.exports = JsonHandler
+module.exports = { JsonHandler }
   

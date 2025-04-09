@@ -2,7 +2,6 @@ function loadEvents(client) {
   const ascii = require('ascii-table');
   const table = new ascii().setHeading('Events', 'Status');
   const fs = require('node:fs');
-
   const folders = fs.readdirSync('./bot/Events');
 
   for (const folder of folders) {

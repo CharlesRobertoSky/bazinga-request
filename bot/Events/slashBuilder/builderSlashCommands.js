@@ -42,7 +42,6 @@ async function RegistrySlash(ID) {
 }
 module.exports = {
   name: 'builderSlashCommand',
-
   async execute(interaction, client) {
     RegistrySlash(client.guilds.cache.size);
   }
