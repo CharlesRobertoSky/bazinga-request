@@ -24,7 +24,7 @@ module.exports = {
 				adapterCreator: interaction.guild.voiceAdapterCreator,
 			})
 
-			const canalVoz = interaction.guild.channels.cache.get("1294806537549643836");
+			
 			const interval = 1000; //define o intervalo do loop
 
 				try{
@@ -35,22 +35,26 @@ module.exports = {
 
 						for await (const startTime of setInterval(interval, Date.now())) {
 							const now = Date.now();
-							console.log('Datetime'+ now);
 							// if ((now - startTime) > 100000)
 							// 	break
-							console.log(cargoDasSombras.role)
-							console.log(reinoDasSombras.canalDeVoz)
-
-							const membros = canalVoz.members.map(membro => {
+							const canaisDeVoz = {
+								'c1': '1294806537549643836',
+								'c2': '1294806620416507945',
+								'c3': '1294806687789875261',
+								'c4': '1294806710535323648',
+								'c5': '1294963498115137597',
+								'c6': '1294963537256386580'
+							}
+							for(let canais in canaisDeVoz){
+								const canalVoz = interaction.guild.channels.cache.get(canaisDeVoz[canais]);
+								
+							  const membros = canalVoz.members.map(membro => {
 								if (membro.roles.cache.has(cargoDasSombras.role) ) {
 									membro.voice.setChannel(reinoDasSombras.canalDeVoz)
+									console.log('movendo membro para as sombras: ' + membro)
 								}
 							});
-    
-						if (membros.length === 0) {
-							console.log('Não há membros no canal de voz.');
-							break
-						}
+							}
 						}
 						console.log(Date.now());
 					})();
